@@ -40,7 +40,7 @@ function server( host ){
         path : "/" + joinPath( this.path, path ),
         method : method.toUpperCase(),
         headers: {
-          'Content-Type': 'application/json;charset=UTF-8'
+          'Content-Type': 'text/plain;charset=UTF-8'
         }
       }
     }

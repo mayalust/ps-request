@@ -1,6 +1,6 @@
 {
   "name": "ps-request",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/mayalust/ps-request/issues"
   },
-  "homepage": "https://github.com/mayalust/ps-request#readme"
+  "homepage": "https://github.com/mayalust/ps-request#readme",
+  "dependencies": {
+    "ps-ultility": "^1.0.62"
+  }
 }
