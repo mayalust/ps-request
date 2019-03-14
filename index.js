@@ -1,5 +1,5 @@
 const http = require("http"),
-  log = require("proudsmart-log"),
+  log = require("proudsmart-log")(),
   { urlparser, extend, isArray } = require("ps-ultility");
 function server( host ){
   class newServer {
@@ -81,18 +81,18 @@ function server( host ){
         let data = "";
         rootNode.cookies = rootNode.cookies || res.headers["set-cookie"];
         res.on("data",  chunk => {
-          data += chunk.toString();
+          data += chunk;
         });
         res.on("end", d => {
           function findUnrecognize( str ){
-            let item, reg = /�/g, start, end;
+            let item, reg = /�/g, start, end, MAXLENGTH = 10;
             while(item = reg.exec(str)){
-              start = item.index - 5 > -1 ? item.index - 5 : 0;
-              end = item.index + 5 < str.length ? item.index + 5 : str.length - 1;
-              log.error(`${option.hostname}/${option.path}" has unrecognized character "${ str.slice(start, end)}"`);
+              start = item.index - MAXLENGTH > -1 ? item.index - MAXLENGTH : 0;
+              end = item.index + MAXLENGTH < str.length ? item.index + MAXLENGTH : str.length - 1;
+              log.error(`"${option.protocol}${option.hostname}:${option.port}/${option.path}" has unrecognized character "${ str.slice(start, end)}"`);
             }
           }
-          findUnrecognize( data );
+          findUnrecognize( data.toString() );
           let json = JSON.parse( data );
           if( json.code == 0 ){
             resolve( json.data );
